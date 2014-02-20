@@ -32,18 +32,20 @@ repository:
 
   comments:
     patterns:
-    - 
-      name: comment.line.purescript
+    - name: comment.line.purescript
       match: \-\-.*
-    - 
-      name: comment.block.purescript
+    - name: comment.block.purescript
       begin: \{\-
       end: \-\}
 
   strings:
     patterns:
-    - 
-      name: string.quoted.single.purescript
+    - name: invalid-strings
+      match: \s+((')'?('))
+      captures:
+        "1":
+          name: invalid.illegal.string.purescript
+    - name: string.quoted.single.purescript
       match: (')(.|(\\.))(')
       captures:
         "1":
@@ -52,8 +54,7 @@ repository:
           name: constant.character.escape.purescript
         "4":
           name: punctuation.definition.string.begin.purescript
-    - 
-      name: string.quoted.double.purescript
+    - name: string.quoted.double.purescript
       match: (\").*(\")
       captures:
         "1":

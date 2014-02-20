@@ -95,6 +95,20 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
+							<string>invalid.illegal.string.purescript</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\s+((')'?('))</string>
+					<key>name</key>
+					<string>invalid-strings</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
 							<string>punctuation.definition.string.begin.purescript</string>
 						</dict>
 						<key>3</key>
