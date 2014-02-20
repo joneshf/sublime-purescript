@@ -26,9 +26,37 @@
 			<key>include</key>
 			<string>#constants</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#comments</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#strings</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>comments</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\-\-.*</string>
+					<key>name</key>
+					<string>comment.line.purescript</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\{\-</string>
+					<key>end</key>
+					<string>\-\}</string>
+					<key>name</key>
+					<string>comment.block.purescript</string>
+				</dict>
+			</array>
+		</dict>
 		<key>constants</key>
 		<dict>
 			<key>match</key>
@@ -56,6 +84,55 @@
 			<string>=&gt;|\-&gt;|=|\.|\\</string>
 			<key>name</key>
 			<string>keyword.operator.purescript</string>
+		</dict>
+		<key>strings</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.purescript</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.purescript</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.purescript</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(')(.|(\\.))(')</string>
+					<key>name</key>
+					<string>string.quoted.single.purescript</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.purescript</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.purescript</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\").*(\")</string>
+					<key>name</key>
+					<string>string.quoted.double.purescript</string>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>

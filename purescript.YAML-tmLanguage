@@ -10,6 +10,8 @@ patterns:
 - include: '#reserved-ps-names'
 - include: '#reserved-ps-operators'
 - include: '#constants'
+- include: '#comments'
+- include: '#strings'
 
 repository:
   reserved-ps-control:
@@ -27,3 +29,34 @@ repository:
   constants:
     name: constant.language.purescript
     match: \b(true|false)\b
+
+  comments:
+    patterns:
+    - 
+      name: comment.line.purescript
+      match: \-\-.*
+    - 
+      name: comment.block.purescript
+      begin: \{\-
+      end: \-\}
+
+  strings:
+    patterns:
+    - 
+      name: string.quoted.single.purescript
+      match: (')(.|(\\.))(')
+      captures:
+        "1":
+          name: punctuation.definition.string.begin.purescript
+        "3":
+          name: constant.character.escape.purescript
+        "4":
+          name: punctuation.definition.string.begin.purescript
+    - 
+      name: string.quoted.double.purescript
+      match: (\").*(\")
+      captures:
+        "1":
+          name: punctuation.definition.string.begin.purescript
+        "2":
+          name: punctuation.definition.string.begin.purescript
