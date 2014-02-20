@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>purs</string>
+	</array>
+	<key>name</key>
+	<string>PureScript</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>include</key>
+			<string>#reserved-ps-control</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#reserved-ps-names</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#reserved-ps-operators</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#constants</string>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>constants</key>
+		<dict>
+			<key>match</key>
+			<string>\b(true|false)\b</string>
+			<key>name</key>
+			<string>constant.language.purescript</string>
+		</dict>
+		<key>reserved-ps-control</key>
+		<dict>
+			<key>match</key>
+			<string>\b(case|of|if|then|else|do|until|let|in)\b</string>
+			<key>name</key>
+			<string>keyword.control.purescript</string>
+		</dict>
+		<key>reserved-ps-names</key>
+		<dict>
+			<key>match</key>
+			<string>\b(data|type|foreign|import|infixl|infixr|class|instance|module)\b</string>
+			<key>name</key>
+			<string>keyword.other.purescript</string>
+		</dict>
+		<key>reserved-ps-operators</key>
+		<dict>
+			<key>match</key>
+			<string>=&gt;|\-&gt;|=|\.|\\</string>
+			<key>name</key>
+			<string>keyword.operator.purescript</string>
+		</dict>
+	</dict>
+	<key>scopeName</key>
+	<string>source.purescript</string>
+	<key>uuid</key>
+	<string>a2569d0d-e592-4873-9488-e0b8d894ac3e</string>
+</dict>
+</plist>

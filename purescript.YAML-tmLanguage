@@ -1,0 +1,29 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: PureScript
+scopeName: source.purescript
+fileTypes: [purs]
+uuid: a2569d0d-e592-4873-9488-e0b8d894ac3e
+
+patterns:
+- include: '#reserved-ps-control'
+- include: '#reserved-ps-names'
+- include: '#reserved-ps-operators'
+- include: '#constants'
+
+repository:
+  reserved-ps-control:
+    name: keyword.control.purescript
+    match: \b(case|of|if|then|else|do|until|let|in)\b
+
+  reserved-ps-names:
+    name: keyword.other.purescript
+    match: \b(data|type|foreign|import|infixl|infixr|class|instance|module)\b
+
+  reserved-ps-operators:
+    name: keyword.operator.purescript
+    match: =>|\->|=|\.|\\
+
+  constants:
+    name: constant.language.purescript
+    match: \b(true|false)\b
