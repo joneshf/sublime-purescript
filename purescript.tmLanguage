@@ -11,6 +11,89 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>begin</key>
+			<string>^\s*\b(module)\b</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\b(where)\b</string>
+			<key>name</key>
+			<string>meta.section.module.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#module-name</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*\b(class)\b</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\b(where)\b|$</string>
+			<key>name</key>
+			<string>meta.declaration.typeclass.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>([A-Z][\w.']*)</string>
+					<key>name</key>
+					<string>entity.other.inherited-class.purescript</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-typeclass</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#generic-tyvar</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*\b(instance)\b</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\b(where)\b|$</string>
+			<key>name</key>
+			<string>meta.declaration.instance.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#type-signature</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#import</string>
+		</dict>
+		<dict>
 			<key>include</key>
 			<string>#reserveds</string>
 		</dict>
@@ -33,6 +116,10 @@
 		<dict>
 			<key>include</key>
 			<string>#prelude</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#data-ctor</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -68,6 +155,36 @@
 			<key>name</key>
 			<string>constant.language.purescript</string>
 		</dict>
+		<key>data-ctor</key>
+		<dict>
+			<key>match</key>
+			<string>\b([A-Z]\w*)\b</string>
+			<key>name</key>
+			<string>constant.other.purescript</string>
+		</dict>
+		<key>decl-ctor</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.purescript</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.purescript</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*</string>
+		</dict>
+		<key>entailed</key>
+		<dict>
+			<key>match</key>
+			<string>\s*\(?.+?\)?\s+=&gt;\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*</string>
+		</dict>
 		<key>ffi</key>
 		<dict>
 			<key>begin</key>
@@ -91,7 +208,15 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\"\s*::.+?</string>
+			<string>\"\s*(::)(.+?)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.purescript</string>
+				</dict>
+			</dict>
 			<key>name</key>
 			<string>meta.function.ffi.purescript</string>
 			<key>patterns</key>
@@ -111,11 +236,43 @@
 					<key>name</key>
 					<string>entity.name.function.purescript</string>
 				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.purescript</string>
+				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*(\w+|\(.+\))\s*\:\:</string>
+			<string>^\s*(\w+|\(.+\))\s*(::).*$</string>
 			<key>name</key>
 			<string>function.purescript</string>
+		</dict>
+		<key>generic-tyvar</key>
+		<dict>
+			<key>match</key>
+			<string>\b([a-z][\w']*)\b</string>
+			<key>name</key>
+			<string>variable.other.purescript</string>
+		</dict>
+		<key>import</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^\s*(import)\s+(\w[\w\.]+?)\s*$</string>
+		</dict>
+		<key>module-name</key>
+		<dict>
+			<key>match</key>
+			<string>([A-Za-z][\w\.']*)</string>
+			<key>name</key>
+			<string>support.other.module.purescript</string>
 		</dict>
 		<key>prelude</key>
 		<dict>
@@ -129,11 +286,39 @@
 				</dict>
 				<dict>
 					<key>match</key>
+					<string>\b(Just|Left|Nothing|Right)\b</string>
+					<key>name</key>
+					<string>support.function.data-ctor.prelude.purescript</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>(#|\$|&lt;(\$|\*|\|)&gt;|&gt;&gt;=|&gt;&gt;&gt;|&lt;&lt;&lt;)</string>
 					<key>name</key>
-					<string>support.function.other.purescript</string>
+					<string>support.type.purescript</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-typeclass</string>
 				</dict>
 			</array>
+		</dict>
+		<key>prelude-type</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Boolean|Number|String)\b</string>
+			<key>name</key>
+			<string>support.type.prelude.purescript</string>
+		</dict>
+		<key>prelude-typeclass</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Alternative|Applicative|Bits|BoolLike|Category|Either|Eq|Functor|Maybe|Monad|Num|Ord|Read|Show)\b</string>
+			<key>name</key>
+			<string>storage.type.prelude.purescript</string>
 		</dict>
 		<key>reserveds</key>
 		<dict>
@@ -141,13 +326,13 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(case|of|if|then|else|do|until|let|in)\b</string>
+					<string>\b(case|do|else|if|in|let|of|then|until)\b</string>
 					<key>name</key>
 					<string>keyword.control.purescript</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(data|type|foreign|import|infixl|infixr|class|instance|module|where|forall)\b</string>
+					<string>\b(class|data|forall|foreign|import|infixl|infixr|instance|module|type|where)\b</string>
 					<key>name</key>
 					<string>keyword.other.purescript</string>
 				</dict>
@@ -219,6 +404,106 @@
 					<string>(\").*(\")</string>
 					<key>name</key>
 					<string>string.quoted.double.purescript</string>
+				</dict>
+			</array>
+		</dict>
+		<key>type-signature</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.purescript</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.purescript</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\((-&gt;)\)|(-&gt;)</string>
+					<key>name</key>
+					<string>arrow.operator.purescript</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.inherited-class.purescript</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.purescript</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.purescript</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.purescript</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*(=&gt;)</string>
+					<key>name</key>
+					<string>meta.entailment.purescript</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>end</key>
+					<string>\)\s*(=&gt;)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.purescript</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.entailment.purescript</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>entity.other.inherited-class.purescript</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>variable.other.purescript</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>\s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([A-Z][\w.']*)</string>
+					<key>name</key>
+					<string>storage.type.purescript</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#generic-tyvar</string>
 				</dict>
 			</array>
 		</dict>

@@ -6,12 +6,45 @@ fileTypes: [purs]
 uuid: a2569d0d-e592-4873-9488-e0b8d894ac3e
 
 patterns:
+- name: meta.section.module.purescript
+  begin: ^\s*\b(module)\b
+  end: \b(where)\b
+  captures:
+    "1":
+      name: keyword.other.purescript
+  patterns:
+  - include: '#module-name'
+
+- name: meta.declaration.typeclass.purescript
+  begin: ^\s*\b(class)\b
+  end: \b(where)\b|$
+  captures:
+    "1":
+      name: keyword.other.purescript
+  patterns:
+  - name: entity.other.inherited-class.purescript
+    match: ([A-Z][\w.']*)
+  - include: '#prelude-typeclass'
+  - include: '#generic-tyvar'
+
+- name: meta.declaration.instance.purescript
+  begin: ^\s*\b(instance)\b
+  end: \b(where)\b|$
+  captures:
+    "1":
+      name: keyword.other.purescript
+  patterns:
+  - include: '#type-signature'
+
+
+- include: '#import'
 - include: '#reserveds'
 - include: '#constants'
 - include: '#strings'
 - include: '#function'
 - include: '#ffi'
 - include: '#prelude'
+- include: '#data-ctor'
 - include: '#comments'
 
 repository:
@@ -27,10 +60,25 @@ repository:
     name: constant.language.purescript
     match: \b(true|false)\b
 
+  data-ctor:
+    name: constant.other.purescript
+    match: \b([A-Z]\w*)\b
+
+  decl-ctor:
+    match: \s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*
+    captures:
+      "1":
+        name: storage.type.purescript
+      "2":
+        name: constant.other.purescript
+
+  entailed:
+    match: \s*\(?.+?\)?\s+=>\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*
+
   ffi:
     name: meta.function.ffi.purescript
     begin: \s*(foreign)\s+(import)\s+(.+?)\s+\"
-    end: \"\s*::.+?
+    end: \"\s*(::)(.+?)
     beginCaptures:
       "1":
         name: keyword.other.purescript
@@ -38,29 +86,60 @@ repository:
         name: keyword.other.purescript
       "3":
         name: entity.name.function.ffi.purescript
+    endCaptures:
+      "1":
+        name: keyword.operator.purescript
     patterns:
       - include: source.js
 
   function:
     name: function.purescript
-    match: "^\\s*(\\w+|\\(.+\\))\\s*\\:\\:"
+    match: "^\\s*(\\w+|\\(.+\\))\\s*(::).*$"
     captures:
       "1":
         name: entity.name.function.purescript
+      "2":
+        name: keyword.operator.purescript
+
+  generic-tyvar:
+    name: variable.other.purescript
+    match: \b([a-z][\w']*)\b
+
+  import:
+    match: ^\s*(import)\s+(\w[\w\.]+?)\s*$
+    captures:
+      "1":
+        name: keyword.other.purescript
+
+  module-name:
+    name: support.other.module.purescript
+    match: ([A-Za-z][\w\.']*)
 
   prelude:
     patterns:
     - name: support.function.prelude.purescript
       match: \b(const|id|flip|liftRef|pure|read|refEq|refIneq|return|show)\b
-    - name: support.function.other.purescript
+    - name: support.function.data-ctor.prelude.purescript
+      match: \b(Just|Left|Nothing|Right)\b
+    - name: support.type.purescript
       match: (#|\$|<(\$|\*|\|)>|>>=|>>>|<<<)
+    - include: '#prelude-type'
+    - include: '#prelude-typeclass'
+
+  prelude-type:
+    name: support.type.prelude.purescript
+    match: \b(Boolean|Number|String)\b
+
+  prelude-typeclass:
+    name: storage.type.prelude.purescript
+    match: \b(Alternative|Applicative|Bits|BoolLike|Category|Either|Eq|Functor|Maybe|Monad|Num|Ord|Read|Show)\b
 
   reserveds:
     patterns:
     - name: keyword.control.purescript
-      match: \b(case|of|if|then|else|do|until|let|in)\b
+      match: \b(case|do|else|if|in|let|of|then|until)\b
     - name: keyword.other.purescript
-      match: \b(data|type|foreign|import|infixl|infixr|class|instance|module|where|forall)\b
+      match: \b(class|data|forall|foreign|import|infixl|infixr|instance|module|type|where)\b
     - name: keyword.operator.purescript
       match: =>|\->|=|\.|\\
 
@@ -87,3 +166,40 @@ repository:
           name: punctuation.definition.string.begin.purescript
         "2":
           name: punctuation.definition.string.begin.purescript
+
+  type-signature:
+    patterns:
+    - name: arrow.operator.purescript
+      match: \((->)\)|(->)
+      captures:
+        "1":
+          name: keyword.operator.purescript
+        "2":
+          name: keyword.operator.purescript
+    - name: meta.entailment.purescript
+      match: \s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*(=>)
+      captures:
+        "1":
+          name: entity.other.inherited-class.purescript
+        "2":
+          name: variable.other.purescript
+        "3":
+          name: keyword.operator.purescript
+        "4":
+          name: storage.type.purescript
+    - name: meta.entailment.purescript
+      begin: \(
+      end: \)\s*(=>)
+      endCaptures:
+        "1":
+          name: keyword.operator.purescript
+      patterns:
+      - match: \s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*
+        captures:
+          "1":
+            name: entity.other.inherited-class.purescript
+          "2":
+            name: variable.other.purescript
+    - name: storage.type.purescript
+      match: ([A-Z][\w.']*)
+    - include: '#generic-tyvar'
