@@ -136,8 +136,73 @@
 			</array>
 		</dict>
 		<dict>
-			<key>include</key>
-			<string>#import</string>
+			<key>begin</key>
+			<string>^\s*(\w+|\(.+\))\s*(::)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.purescript</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.has-type.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.declaration.function.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#type-signature</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\s*(foreign)\s+(import)\s+(.+?)\s+</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.ffi.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\s*(::)(.+?)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>substringkeyword.operator.purescript</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.declaration.ffi.function.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#ffi</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -150,14 +215,6 @@
 		<dict>
 			<key>include</key>
 			<string>#strings</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#function</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#ffi</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -233,65 +290,22 @@
 		</dict>
 		<key>ffi</key>
 		<dict>
-			<key>begin</key>
-			<string>\s*(foreign)\s+(import)\s+(.+?)\s+\"</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.purescript</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.purescript</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.ffi.purescript</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>\"\s*(::)(.+?)</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.purescript</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>meta.function.ffi.purescript</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>source.js</string>
+					<key>begin</key>
+					<string>"</string>
+					<key>end</key>
+					<string>"</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
-		</dict>
-		<key>function</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.purescript</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.purescript</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>^\s*(\w+|\(.+\))\s*(::).*$</string>
-			<key>name</key>
-			<string>function.purescript</string>
 		</dict>
 		<key>generic-tyvar</key>
 		<dict>
