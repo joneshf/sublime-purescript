@@ -81,12 +81,12 @@ patterns:
   patterns:
     - include: '#ffi'
 
+- include: '#comments'
 - include: '#reserveds'
 - include: '#constants'
 - include: '#strings'
 - include: '#prelude'
 - include: '#data-ctor'
-- include: '#comments'
 
 repository:
   comments:
@@ -130,23 +130,130 @@ repository:
 
   prelude:
     patterns:
-    - include: '#prelude-data-ctor'
+    - include: '#prelude-data'
     - include: '#prelude-function'
     - include: '#prelude-op'
     - include: '#prelude-type'
     - include: '#prelude-typeclass'
 
-  prelude-data-ctor:
+  prelude-data:
     name: support.function.data-ctor.prelude.purescript
     match: \b(Just|Left|Nothing|Right)\b
 
   prelude-function:
-    name: support.function.prelude.purescript
-    match: \b(const|id|flip|liftRef|negate|numAdd|numAnd|numComplement|numDiv|numGreater|numGreaterEq|numLess|numLessEq|numMod|numMul|numNegate|numOr|numShl|numShr|numSub|numXor|numZshr|pure|read|readNumber|refEq|refIneq|return|show|showNumber|unsafeRefEq|unsafeRefIneq)\b
+    patterns:
+    - name: support.function.prelude.purescript
+      match: \b(const|flip)\b
+    - include: '#prelude-function-alternative'
+    - include: '#prelude-function-applicative'
+    - include: '#prelude-function-bits'
+    - include: '#prelude-function-boollike'
+    - include: '#prelude-function-category'
+    - include: '#prelude-function-monad'
+    - include: '#prelude-function-num'
+    - include: '#prelude-function-ord'
+    - include: '#prelude-function-read'
+    - include: '#prelude-function-ref'
+    - include: '#prelude-function-show'
+
+  prelude-function-alternative:
+    name: support.function.prelude.alternative.purescript
+    match: \b(empty)\b
+
+  prelude-function-applicative:
+    name: support.function.prelude.applicative.purescript
+    match: \b(pure)\b
+
+  prelude-function-bits:
+    name: support.function.prelude.bits.purescript
+    match: \b(complement|shl|shr|numAnd|numComplement|numOr|numShl|numShr|numXor|numZshr|zshr)\b
+
+  prelude-function-boollike:
+    name: support.function.prelude.boollike.purescript
+    match: \b(boolAnd|boolNot|boolOr|not)\b
+
+  prelude-function-category:
+    name: support.function.prelude.category.purescript
+    match: \b(id)\b
+
+  prelude-function-monad:
+    name: support.function.prelude.monad.purescript
+    match: \b(return)\b
+
+  prelude-function-num:
+    name: support.function.prelude.num.purescript
+    match: \b(negate|numAdd|numDiv|numMod|numMul|numNegate|numSub)\b
+
+  prelude-function-ord:
+    name: support.function.prelude.ord.purescript
+    match: \b(numLess|numLessEq|numGreater|numGreaterEq)\b
+
+  prelude-function-read:
+    name: support.function.prelude.read.purescript
+    match: \b(read|readNumber)\b
+
+  prelude-function-ref:
+    name: support.function.prelude.ref.purescript
+    match: \b(liftRef|refEq|refIneq|unsafeRefEq|unsafeRefIneq)\b
+
+  prelude-function-show:
+    name: support.function.prelude.show.purescript
+    match: \b(show|showNumber)\b
 
   prelude-op:
-    name: support.type.purescript
-    match: (#|\$|<\$>|<\*>|<\|>|>>=|>>>|<<<|\*|/|%|\-|\+|==|/=|<|>|<=|>=|&|\||\^)
+    patterns:
+    - name: support.type.op.prelude.purescript
+      match: (\$|#)
+    - include: '#prelude-op-alternative'
+    - include: '#prelude-op-applicative'
+    - include: '#prelude-op-bits'
+    - include: '#prelude-op-boollike'
+    - include: '#prelude-op-category'
+    - include: '#prelude-op-eq'
+    - include: '#prelude-op-functor'
+    - include: '#prelude-op-monad'
+    - include: '#prelude-op-num'
+    - include: '#prelude-op-ord'
+
+  prelude-op-alternative:
+    name: support.type.op.prelude.alternative.purescript
+    match: (<\|>)
+
+  prelude-op-applicative:
+    name: support.type.op.prelude.applicative.purescript
+    match: (<\*>)
+
+  prelude-op-bits:
+    name: support.type.op.prelude.bits.purescript
+    match: (&|\||\^)
+
+  prelude-op-boollike:
+    name: support.type.op.prelude.boollike.purescript
+    match: (&&|\|\||\^)
+
+  prelude-op-category:
+    name: support.type.op.prelude.category.purescript
+    match: (<<<|>>>)
+
+  prelude-op-eq:
+    name: support.type.op.prelude.eq.purescript
+    match: (==|/=)
+
+  prelude-op-functor:
+    name: support.type.op.prelude.functor.purescript
+    match: (<\$>)
+
+  prelude-op-monad:
+    name: support.type.op.prelude.monad.purescript
+    match: (>>=)
+
+  prelude-op-num:
+    name: support.type.op.prelude.num.purescript
+    match: (\+|\-|\*|/|%)
+
+  prelude-op-ord:
+    name: support.type.op.prelude.ord.purescript
+    match: (<|<=|>|>=)
 
   prelude-type:
     name: support.type.prelude.purescript

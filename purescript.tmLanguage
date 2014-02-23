@@ -206,6 +206,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#comments</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#reserveds</string>
 		</dict>
 		<dict>
@@ -223,10 +227,6 @@
 		<dict>
 			<key>include</key>
 			<string>#data-ctor</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#comments</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -322,7 +322,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#prelude-data-ctor</string>
+					<string>#prelude-data</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -342,7 +342,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>prelude-data-ctor</key>
+		<key>prelude-data</key>
 		<dict>
 			<key>match</key>
 			<string>\b(Just|Left|Nothing|Right)\b</string>
@@ -351,17 +351,258 @@
 		</dict>
 		<key>prelude-function</key>
 		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(const|flip)\b</string>
+					<key>name</key>
+					<string>support.function.prelude.purescript</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-alternative</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-applicative</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-bits</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-boollike</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-category</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-monad</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-num</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-ord</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-read</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-ref</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-function-show</string>
+				</dict>
+			</array>
+		</dict>
+		<key>prelude-function-alternative</key>
+		<dict>
 			<key>match</key>
-			<string>\b(const|id|flip|liftRef|negate|numAdd|numAnd|numComplement|numDiv|numGreater|numGreaterEq|numLess|numLessEq|numMod|numMul|numNegate|numOr|numShl|numShr|numSub|numXor|numZshr|pure|read|readNumber|refEq|refIneq|return|show|showNumber|unsafeRefEq|unsafeRefIneq)\b</string>
+			<string>\b(empty)\b</string>
 			<key>name</key>
-			<string>support.function.prelude.purescript</string>
+			<string>support.function.prelude.alternative.purescript</string>
+		</dict>
+		<key>prelude-function-applicative</key>
+		<dict>
+			<key>match</key>
+			<string>\b(pure)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.applicative.purescript</string>
+		</dict>
+		<key>prelude-function-bits</key>
+		<dict>
+			<key>match</key>
+			<string>\b(complement|shl|shr|numAnd|numComplement|numOr|numShl|numShr|numXor|numZshr|zshr)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.bits.purescript</string>
+		</dict>
+		<key>prelude-function-boollike</key>
+		<dict>
+			<key>match</key>
+			<string>\b(boolAnd|boolNot|boolOr|not)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.boollike.purescript</string>
+		</dict>
+		<key>prelude-function-category</key>
+		<dict>
+			<key>match</key>
+			<string>\b(id)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.category.purescript</string>
+		</dict>
+		<key>prelude-function-monad</key>
+		<dict>
+			<key>match</key>
+			<string>\b(return)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.monad.purescript</string>
+		</dict>
+		<key>prelude-function-num</key>
+		<dict>
+			<key>match</key>
+			<string>\b(negate|numAdd|numDiv|numMod|numMul|numNegate|numSub)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.num.purescript</string>
+		</dict>
+		<key>prelude-function-ord</key>
+		<dict>
+			<key>match</key>
+			<string>\b(numLess|numLessEq|numGreater|numGreaterEq)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.ord.purescript</string>
+		</dict>
+		<key>prelude-function-read</key>
+		<dict>
+			<key>match</key>
+			<string>\b(read|readNumber)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.read.purescript</string>
+		</dict>
+		<key>prelude-function-ref</key>
+		<dict>
+			<key>match</key>
+			<string>\b(liftRef|refEq|refIneq|unsafeRefEq|unsafeRefIneq)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.ref.purescript</string>
+		</dict>
+		<key>prelude-function-show</key>
+		<dict>
+			<key>match</key>
+			<string>\b(show|showNumber)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.show.purescript</string>
 		</dict>
 		<key>prelude-op</key>
 		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(\$|#)</string>
+					<key>name</key>
+					<string>support.type.op.prelude.purescript</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-alternative</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-applicative</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-bits</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-boollike</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-category</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-eq</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-functor</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-monad</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-num</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#prelude-op-ord</string>
+				</dict>
+			</array>
+		</dict>
+		<key>prelude-op-alternative</key>
+		<dict>
 			<key>match</key>
-			<string>(#|\$|&lt;\$&gt;|&lt;\*&gt;|&lt;\|&gt;|&gt;&gt;=|&gt;&gt;&gt;|&lt;&lt;&lt;|\*|/|%|\-|\+|==|/=|&lt;|&gt;|&lt;=|&gt;=|&amp;|\||\^)</string>
+			<string>(&lt;\|&gt;)</string>
 			<key>name</key>
-			<string>support.type.purescript</string>
+			<string>support.type.op.prelude.alternative.purescript</string>
+		</dict>
+		<key>prelude-op-applicative</key>
+		<dict>
+			<key>match</key>
+			<string>(&lt;\*&gt;)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.applicative.purescript</string>
+		</dict>
+		<key>prelude-op-bits</key>
+		<dict>
+			<key>match</key>
+			<string>(&amp;|\||\^)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.bits.purescript</string>
+		</dict>
+		<key>prelude-op-boollike</key>
+		<dict>
+			<key>match</key>
+			<string>(&amp;&amp;|\|\||\^)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.boollike.purescript</string>
+		</dict>
+		<key>prelude-op-category</key>
+		<dict>
+			<key>match</key>
+			<string>(&lt;&lt;&lt;|&gt;&gt;&gt;)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.category.purescript</string>
+		</dict>
+		<key>prelude-op-eq</key>
+		<dict>
+			<key>match</key>
+			<string>(==|/=)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.eq.purescript</string>
+		</dict>
+		<key>prelude-op-functor</key>
+		<dict>
+			<key>match</key>
+			<string>(&lt;\$&gt;)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.functor.purescript</string>
+		</dict>
+		<key>prelude-op-monad</key>
+		<dict>
+			<key>match</key>
+			<string>(&gt;&gt;=)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.monad.purescript</string>
+		</dict>
+		<key>prelude-op-num</key>
+		<dict>
+			<key>match</key>
+			<string>(\+|\-|\*|/|%)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.num.purescript</string>
+		</dict>
+		<key>prelude-op-ord</key>
+		<dict>
+			<key>match</key>
+			<string>(&lt;|&lt;=|&gt;|&gt;=)</string>
+			<key>name</key>
+			<string>support.type.op.prelude.ord.purescript</string>
 		</dict>
 		<key>prelude-type</key>
 		<dict>
