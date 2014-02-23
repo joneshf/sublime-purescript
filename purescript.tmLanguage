@@ -35,6 +35,52 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>\b(import)\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.declaration.import.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#module-name</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*\b(type)\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>meta.declaration.type.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#type-simple</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>^\s*\b(class)\b</string>
 			<key>captures</key>
 			<dict>
@@ -254,19 +300,6 @@
 			<key>name</key>
 			<string>variable.other.purescript</string>
 		</dict>
-		<key>import</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.purescript</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>^\s*(import)\s+(\w[\w\.]+?)\s*$</string>
-		</dict>
 		<key>module-name</key>
 		<dict>
 			<key>match</key>
@@ -407,29 +440,10 @@
 				</dict>
 			</array>
 		</dict>
-		<key>type-signature</key>
+		<key>type-entailment</key>
 		<dict>
 			<key>patterns</key>
 			<array>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.purescript</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.purescript</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\((-&gt;)\)|(-&gt;)</string>
-					<key>name</key>
-					<string>arrow.operator.purescript</string>
-				</dict>
 				<dict>
 					<key>captures</key>
 					<dict>
@@ -494,6 +508,45 @@
 							<string>\s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*</string>
 						</dict>
 					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>type-signature</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#type-simple</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#type-entailment</string>
+				</dict>
+			</array>
+		</dict>
+		<key>type-simple</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.purescript</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.purescript</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\((-&gt;)\)|(-&gt;)</string>
+					<key>name</key>
+					<string>arrow.operator.purescript</string>
 				</dict>
 				<dict>
 					<key>match</key>
