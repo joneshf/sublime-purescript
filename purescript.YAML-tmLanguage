@@ -65,6 +65,18 @@ patterns:
   patterns:
   - include: '#type-signature'
 
+- name: meta.declaration.ffi.data.purescript
+  match: \s*(foreign)\s+(import)\s+(data)\s+(.+?)\s+(::)
+  captures:
+    "1":
+      name: keyword.other.purescript
+    "2":
+      name: keyword.other.purescript
+    "3":
+      name: keyword.other.purescript
+    "4":
+      name: entity.name.function.ffi.purescript
+
 - name: meta.declaration.ffi.function.purescript
   begin: \s*(foreign)\s+(import)\s+(.+?)\s+
   end: \s*(::)(.+?)
