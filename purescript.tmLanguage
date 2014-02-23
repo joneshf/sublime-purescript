@@ -283,11 +283,6 @@
 			<key>match</key>
 			<string>\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*</string>
 		</dict>
-		<key>entailed</key>
-		<dict>
-			<key>match</key>
-			<string>\s*\(?.+?\)?\s+=&gt;\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*</string>
-		</dict>
 		<key>ffi</key>
 		<dict>
 			<key>patterns</key>
@@ -326,22 +321,16 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\b(const|id|flip|liftRef|pure|read|refEq|refIneq|return|show)\b</string>
-					<key>name</key>
-					<string>support.function.prelude.purescript</string>
+					<key>include</key>
+					<string>#prelude-data-ctor</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\b(Just|Left|Nothing|Right)\b</string>
-					<key>name</key>
-					<string>support.function.data-ctor.prelude.purescript</string>
+					<key>include</key>
+					<string>#prelude-function</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>(#|\$|&lt;(\$|\*|\|)&gt;|&gt;&gt;=|&gt;&gt;&gt;|&lt;&lt;&lt;)</string>
-					<key>name</key>
-					<string>support.type.purescript</string>
+					<key>include</key>
+					<string>#prelude-op</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -352,6 +341,27 @@
 					<string>#prelude-typeclass</string>
 				</dict>
 			</array>
+		</dict>
+		<key>prelude-data-ctor</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Just|Left|Nothing|Right)\b</string>
+			<key>name</key>
+			<string>support.function.data-ctor.prelude.purescript</string>
+		</dict>
+		<key>prelude-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(const|id|flip|liftRef|negate|numAdd|numAnd|numComplement|numDiv|numGreater|numGreaterEq|numLess|numLessEq|numMod|numMul|numNegate|numOr|numShl|numShr|numSub|numXor|numZshr|pure|read|readNumber|refEq|refIneq|return|show|showNumber|unsafeRefEq|unsafeRefIneq)\b</string>
+			<key>name</key>
+			<string>support.function.prelude.purescript</string>
+		</dict>
+		<key>prelude-op</key>
+		<dict>
+			<key>match</key>
+			<string>(#|\$|&lt;\$&gt;|&lt;\*&gt;|&lt;\|&gt;|&gt;&gt;=|&gt;&gt;&gt;|&lt;&lt;&lt;|\*|/|%|\-|\+|==|/=|&lt;|&gt;|&lt;=|&gt;=|&amp;|\||\^)</string>
+			<key>name</key>
+			<string>support.type.purescript</string>
 		</dict>
 		<key>prelude-type</key>
 		<dict>

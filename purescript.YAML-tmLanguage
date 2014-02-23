@@ -113,9 +113,6 @@ repository:
       "2":
         name: constant.other.purescript
 
-  entailed:
-    match: \s*\(?.+?\)?\s+=>\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*
-
   ffi:
     patterns:
     - begin: "\""
@@ -133,14 +130,23 @@ repository:
 
   prelude:
     patterns:
-    - name: support.function.prelude.purescript
-      match: \b(const|id|flip|liftRef|pure|read|refEq|refIneq|return|show)\b
-    - name: support.function.data-ctor.prelude.purescript
-      match: \b(Just|Left|Nothing|Right)\b
-    - name: support.type.purescript
-      match: (#|\$|<(\$|\*|\|)>|>>=|>>>|<<<)
+    - include: '#prelude-data-ctor'
+    - include: '#prelude-function'
+    - include: '#prelude-op'
     - include: '#prelude-type'
     - include: '#prelude-typeclass'
+
+  prelude-data-ctor:
+    name: support.function.data-ctor.prelude.purescript
+    match: \b(Just|Left|Nothing|Right)\b
+
+  prelude-function:
+    name: support.function.prelude.purescript
+    match: \b(const|id|flip|liftRef|negate|numAdd|numAnd|numComplement|numDiv|numGreater|numGreaterEq|numLess|numLessEq|numMod|numMul|numNegate|numOr|numShl|numShr|numSub|numXor|numZshr|pure|read|readNumber|refEq|refIneq|return|show|showNumber|unsafeRefEq|unsafeRefIneq)\b
+
+  prelude-op:
+    name: support.type.purescript
+    match: (#|\$|<\$>|<\*>|<\|>|>>=|>>>|<<<|\*|/|%|\-|\+|==|/=|<|>|<=|>=|&|\||\^)
 
   prelude-type:
     name: support.type.prelude.purescript
