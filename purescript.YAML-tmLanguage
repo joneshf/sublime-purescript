@@ -6,30 +6,15 @@ fileTypes: [purs]
 uuid: a2569d0d-e592-4873-9488-e0b8d894ac3e
 
 patterns:
-- include: '#reserved-ps-control'
-- include: '#reserved-ps-names'
-- include: '#reserved-ps-operators'
+- include: '#reserveds'
 - include: '#constants'
-- include: '#comments'
 - include: '#strings'
+- include: '#function'
+- include: '#ffi'
+- include: '#prelude'
+- include: '#comments'
 
 repository:
-  reserved-ps-control:
-    name: keyword.control.purescript
-    match: \b(case|of|if|then|else|do|until|let|in)\b
-
-  reserved-ps-names:
-    name: keyword.other.purescript
-    match: \b(data|type|foreign|import|infixl|infixr|class|instance|module)\b
-
-  reserved-ps-operators:
-    name: keyword.operator.purescript
-    match: =>|\->|=|\.|\\
-
-  constants:
-    name: constant.language.purescript
-    match: \b(true|false)\b
-
   comments:
     patterns:
     - name: comment.line.purescript
@@ -37,6 +22,47 @@ repository:
     - name: comment.block.purescript
       begin: \{\-
       end: \-\}
+
+  constants:
+    name: constant.language.purescript
+    match: \b(true|false)\b
+
+  ffi:
+    name: meta.function.ffi.purescript
+    begin: \s*(foreign)\s+(import)\s+(.+?)\s+\"
+    end: \"\s*::.+?
+    beginCaptures:
+      "1":
+        name: keyword.other.purescript
+      "2":
+        name: keyword.other.purescript
+      "3":
+        name: entity.name.function.ffi.purescript
+    patterns:
+      - include: source.js
+
+  function:
+    name: function.purescript
+    match: "^\\s*(\\w+|\\(.+\\))\\s*\\:\\:"
+    captures:
+      "1":
+        name: entity.name.function.purescript
+
+  prelude:
+    patterns:
+    - name: support.function.prelude.purescript
+      match: \b(const|id|flip|liftRef|pure|read|refEq|refIneq|return|show)\b
+    - name: support.function.other.purescript
+      match: (#|\$|<(\$|\*|\|)>|>>=|>>>|<<<)
+
+  reserveds:
+    patterns:
+    - name: keyword.control.purescript
+      match: \b(case|of|if|then|else|do|until|let|in)\b
+    - name: keyword.other.purescript
+      match: \b(data|type|foreign|import|infixl|infixr|class|instance|module|where|forall)\b
+    - name: keyword.operator.purescript
+      match: =>|\->|=|\.|\\
 
   strings:
     patterns:

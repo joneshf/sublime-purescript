@@ -12,15 +12,7 @@
 	<array>
 		<dict>
 			<key>include</key>
-			<string>#reserved-ps-control</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#reserved-ps-names</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#reserved-ps-operators</string>
+			<string>#reserveds</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -28,11 +20,23 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#comments</string>
+			<string>#strings</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#strings</string>
+			<string>#function</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#ffi</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#prelude</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#comments</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -64,26 +68,96 @@
 			<key>name</key>
 			<string>constant.language.purescript</string>
 		</dict>
-		<key>reserved-ps-control</key>
+		<key>ffi</key>
 		<dict>
-			<key>match</key>
-			<string>\b(case|of|if|then|else|do|until|let|in)\b</string>
+			<key>begin</key>
+			<string>\s*(foreign)\s+(import)\s+(.+?)\s+\"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.ffi.purescript</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\"\s*::.+?</string>
 			<key>name</key>
-			<string>keyword.control.purescript</string>
+			<string>meta.function.ffi.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
 		</dict>
-		<key>reserved-ps-names</key>
+		<key>function</key>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.purescript</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>\b(data|type|foreign|import|infixl|infixr|class|instance|module)\b</string>
+			<string>^\s*(\w+|\(.+\))\s*\:\:</string>
 			<key>name</key>
-			<string>keyword.other.purescript</string>
+			<string>function.purescript</string>
 		</dict>
-		<key>reserved-ps-operators</key>
+		<key>prelude</key>
 		<dict>
-			<key>match</key>
-			<string>=&gt;|\-&gt;|=|\.|\\</string>
-			<key>name</key>
-			<string>keyword.operator.purescript</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(const|id|flip|liftRef|pure|read|refEq|refIneq|return|show)\b</string>
+					<key>name</key>
+					<string>support.function.prelude.purescript</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(#|\$|&lt;(\$|\*|\|)&gt;|&gt;&gt;=|&gt;&gt;&gt;|&lt;&lt;&lt;)</string>
+					<key>name</key>
+					<string>support.function.other.purescript</string>
+				</dict>
+			</array>
+		</dict>
+		<key>reserveds</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(case|of|if|then|else|do|until|let|in)\b</string>
+					<key>name</key>
+					<string>keyword.control.purescript</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(data|type|foreign|import|infixl|infixr|class|instance|module|where|forall)\b</string>
+					<key>name</key>
+					<string>keyword.other.purescript</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>=&gt;|\-&gt;|=|\.|\\</string>
+					<key>name</key>
+					<string>keyword.operator.purescript</string>
+				</dict>
+			</array>
 		</dict>
 		<key>strings</key>
 		<dict>
