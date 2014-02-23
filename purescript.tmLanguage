@@ -461,7 +461,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\(</string>
+					<string>(?=.*=&gt;)\(</string>
 					<key>end</key>
 					<string>\)\s*(=&gt;)</string>
 					<key>endCaptures</key>

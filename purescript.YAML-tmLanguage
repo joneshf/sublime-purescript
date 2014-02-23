@@ -188,7 +188,7 @@ repository:
         "4":
           name: storage.type.purescript
     - name: meta.entailment.purescript
-      begin: \(
+      begin: (?=.*=>)\(
       end: \)\s*(=>)
       endCaptures:
         "1":
