@@ -255,11 +255,107 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#data-ctor</string>
+			<string>#array</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#eff</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#either</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#enum</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#error</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#global</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#ioref</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#math</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#maybe</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#monad</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#monoid</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#random</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#regex</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#st</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#string</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#trace</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#tuple</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#data</string>
 		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>array</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#array-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#array-op</string>
+				</dict>
+			</array>
+		</dict>
+		<key>array-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(all|any|concat|concatMap|deleteAt|filter|find|foldl|foldr|head|indexOf|insertAt|isEmpty|joinS|joinWith|lastIndexOf|length|map|push|range|reverse|shift|singleton|slice|sort|tail|updateAt|zipWith)\b</string>
+			<key>name</key>
+			<string>support.function.array.purescript</string>
+		</dict>
+		<key>array-op</key>
+		<dict>
+			<key>match</key>
+			<string>(:)</string>
+			<key>name</key>
+			<string>support.op.array.purescript</string>
+		</dict>
 		<key>comments</key>
 		<dict>
 			<key>patterns</key>
@@ -287,7 +383,7 @@
 			<key>name</key>
 			<string>constant.language.purescript</string>
 		</dict>
-		<key>data-ctor</key>
+		<key>data</key>
 		<dict>
 			<key>match</key>
 			<string>\b([A-Z]\w*)\b</string>
@@ -311,6 +407,129 @@
 			</dict>
 			<key>match</key>
 			<string>\s*([A-Z][\w\.]*?)\s+([A-Z][\w\.]*)\s*</string>
+		</dict>
+		<key>eff</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#eff-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#eff-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#eff-type</string>
+				</dict>
+			</array>
+		</dict>
+		<key>eff-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Eff)\b</string>
+			<key>name</key>
+			<string>support.function.data.eff.purescript</string>
+		</dict>
+		<key>eff-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(bindEff|forE|foreachE|retEff|runPure|untilE|whileE)\b</string>
+			<key>name</key>
+			<string>support.function.eff.purescript</string>
+		</dict>
+		<key>eff-type</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Pure)\b</string>
+			<key>name</key>
+			<string>support.type.eff.purescript</string>
+		</dict>
+		<key>either</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#either-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#either-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>either-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Left|Right)\b</string>
+			<key>name</key>
+			<string>support.function.data.either.purescript</string>
+		</dict>
+		<key>either-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(either)\b</string>
+			<key>name</key>
+			<string>support.function.either.purescript</string>
+		</dict>
+		<key>enum</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#enum-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#enum-typeclass</string>
+				</dict>
+			</array>
+		</dict>
+		<key>enum-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(fromEnum|toEnum)\b</string>
+			<key>name</key>
+			<string>support.function.enum.purescript</string>
+		</dict>
+		<key>enum-typeclass</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Enum)\b</string>
+			<key>name</key>
+			<string>storage.type.enum.purescript</string>
+		</dict>
+		<key>error</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#error-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#error-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>error-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Error)\b</string>
+			<key>name</key>
+			<string>support.function.data.error.purescript</string>
+		</dict>
+		<key>error-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(catchError|throwError)\b</string>
+			<key>name</key>
+			<string>support.function.error.purescript</string>
 		</dict>
 		<key>ffi</key>
 		<dict>
@@ -338,12 +557,180 @@
 			<key>name</key>
 			<string>variable.other.purescript</string>
 		</dict>
+		<key>global</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#global-constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#global-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>global-constant</key>
+		<dict>
+			<key>match</key>
+			<string>\b(infinity|nan)\b</string>
+			<key>name</key>
+			<string>constant.support.global.purescript</string>
+		</dict>
+		<key>global-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|isFinite|isNaN|parseFloat|parseInt|toExponential|toFixed|toPrecision)\b</string>
+			<key>name</key>
+			<string>support.function.global.purescript</string>
+		</dict>
+		<key>ioref</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#ioref-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ioref-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>ioref-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(IORef|Ref)\b</string>
+			<key>name</key>
+			<string>support.function.data.ioref.purescript</string>
+		</dict>
+		<key>ioref-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(modifyIORef|newIORef|readIORef|unsafeRunIORef|writeIORef)\b</string>
+			<key>name</key>
+			<string>support.function.ioref.purescript</string>
+		</dict>
+		<key>math</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#math-constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#math-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>math-constant</key>
+		<dict>
+			<key>match</key>
+			<string>\b(e|ln10|ln2|log10e|log2e|pi|sqrt1_2|sqrt2)\b</string>
+			<key>name</key>
+			<string>constant.support.math.purescript</string>
+		</dict>
+		<key>math-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(abs|aceil|acos|asin|atan|atan2|cos|exp|floor|log|max|min|pow|round|sin|sqrt|tan)\b</string>
+			<key>name</key>
+			<string>support.function.math.purescript</string>
+		</dict>
+		<key>maybe</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#maybe-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#maybe-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>maybe-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Just|Nothing)\b</string>
+			<key>name</key>
+			<string>support.function.data.maybe.purescript</string>
+		</dict>
+		<key>maybe-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(maybe|fromMaybe)\b</string>
+			<key>name</key>
+			<string>support.function.maybe.purescript</string>
+		</dict>
 		<key>module-name</key>
 		<dict>
 			<key>match</key>
 			<string>([A-Za-z][\w\.']*)</string>
 			<key>name</key>
 			<string>support.other.module.purescript</string>
+		</dict>
+		<key>monad</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#monad-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#monad-op</string>
+				</dict>
+			</array>
+		</dict>
+		<key>monad-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(replicateM|mapM|sequence|join|foldM|when)\b</string>
+			<key>name</key>
+			<string>support.function.monad.purescript</string>
+		</dict>
+		<key>monad-op</key>
+		<dict>
+			<key>match</key>
+			<string>(&gt;=&gt;|&lt;=&lt;)</string>
+			<key>name</key>
+			<string>support.op.monad.purescript</string>
+		</dict>
+		<key>monoid</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#monoid-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#monoid-op</string>
+				</dict>
+			</array>
+		</dict>
+		<key>monoid-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(mconcat|mempty)\b</string>
+			<key>name</key>
+			<string>support.function.monoid.purescript</string>
+		</dict>
+		<key>monoid-op</key>
+		<dict>
+			<key>match</key>
+			<string>(&lt;&gt;)</string>
+			<key>name</key>
+			<string>support.op.monoid.purescript</string>
 		</dict>
 		<key>prelude</key>
 		<dict>
@@ -374,9 +761,9 @@
 		<key>prelude-data</key>
 		<dict>
 			<key>match</key>
-			<string>\b(Just|Left|Nothing|Right)\b</string>
+			<string>\b(Ref)\b</string>
 			<key>name</key>
-			<string>support.function.data-ctor.prelude.purescript</string>
+			<string>support.function.data.prelude.purescript</string>
 		</dict>
 		<key>prelude-function</key>
 		<dict>
@@ -643,9 +1030,65 @@
 		<key>prelude-typeclass</key>
 		<dict>
 			<key>match</key>
-			<string>\b(Alternative|Applicative|Bits|BoolLike|Category|Either|Eq|Functor|Maybe|Monad|Num|Ord|Read|Show)\b</string>
+			<string>\b(Alternative|Applicative|Bits|BoolLike|Category|Eq|Functor|Monad|Num|Ord|Read|Show)\b</string>
 			<key>name</key>
 			<string>storage.type.prelude.purescript</string>
+		</dict>
+		<key>random</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#random-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#random-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>random-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Random)\b</string>
+			<key>name</key>
+			<string>support.function.data.random.purescript</string>
+		</dict>
+		<key>random-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(random)\b</string>
+			<key>name</key>
+			<string>support.function.random.purescript</string>
+		</dict>
+		<key>regex</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#regex-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#regex-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>regex-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Regex)\b</string>
+			<key>name</key>
+			<string>support.function.data.regex.purescript</string>
+		</dict>
+		<key>regex-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(match|regex|replaceR|search|test)\b</string>
+			<key>name</key>
+			<string>support.function.regex.purescript</string>
 		</dict>
 		<key>reserveds</key>
 		<dict>
@@ -670,6 +1113,51 @@
 					<string>keyword.operator.purescript</string>
 				</dict>
 			</array>
+		</dict>
+		<key>st</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#st-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#st-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>st-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(ST|STRef|STArray)\b</string>
+			<key>name</key>
+			<string>support.function.data.st.purescript</string>
+		</dict>
+		<key>st-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(modifySTRef|newSTArray|newSTRef|peekSTArray|pokeSTArray|readSTRef|runST|runSTArray|writeSTRef)\b</string>
+			<key>name</key>
+			<string>support.function.st.purescript</string>
+		</dict>
+		<key>string</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>string-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(charAt|indexOfS|lastIndexOfS|lengthS|localeCompare|replace|sliceS|split|substr|substring|toLower|toUpper|trim)\b</string>
+			<key>name</key>
+			<string>support.function.string.purescript</string>
 		</dict>
 		<key>strings</key>
 		<dict>
@@ -733,6 +1221,51 @@
 					<string>string.quoted.double.purescript</string>
 				</dict>
 			</array>
+		</dict>
+		<key>trace</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#trace-data</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#trace-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>trace-data</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Trace)\b</string>
+			<key>name</key>
+			<string>support.function.data.trace.purescript</string>
+		</dict>
+		<key>trace-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(print|trace)\b</string>
+			<key>name</key>
+			<string>support.function.trace.purescript</string>
+		</dict>
+		<key>tuple</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tuple-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>tuple-function</key>
+		<dict>
+			<key>match</key>
+			<string>\b(curry|uncurry|unzip|zip)\b</string>
+			<key>name</key>
+			<string>support.function.tuple.purescript</string>
 		</dict>
 		<key>type-entailment</key>
 		<dict>
