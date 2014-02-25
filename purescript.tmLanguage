@@ -716,6 +716,10 @@
 					<key>include</key>
 					<string>#monoid-op</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#monoid-typeclass</string>
+				</dict>
 			</array>
 		</dict>
 		<key>monoid-function</key>
@@ -731,6 +735,13 @@
 			<string>(&lt;&gt;)</string>
 			<key>name</key>
 			<string>support.op.monoid.purescript</string>
+		</dict>
+		<key>monoid-typeclass</key>
+		<dict>
+			<key>match</key>
+			<string>\b(Monoid)\b</string>
+			<key>name</key>
+			<string>storage.type.monoid.purescript</string>
 		</dict>
 		<key>prelude</key>
 		<dict>

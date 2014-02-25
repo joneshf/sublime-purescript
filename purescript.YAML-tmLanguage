@@ -296,6 +296,7 @@ repository:
     patterns:
     - include: '#monoid-function'
     - include: '#monoid-op'
+    - include: '#monoid-typeclass'
 
   monoid-function:
     name: support.function.monoid.purescript
@@ -304,6 +305,10 @@ repository:
   monoid-op:
     name: support.op.monoid.purescript
     match: (<>)
+
+  monoid-typeclass:
+    name: storage.type.monoid.purescript
+    match: \b(Monoid)\b
 
   prelude:
     patterns:
