@@ -546,10 +546,10 @@ repository:
     name: support.function.tuple.purescript
     match: \b(curry|uncurry|unzip|zip)\b
 
-  type-entailment:
+  type-constraint:
     patterns:
-    - name: meta.entailment.purescript
-      match: \s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*(=>)
+    - name: meta.constraint.purescript
+      match: \s*([A-Z][\w.']*)\s+([A-Za-z][\w.']*)\s*(=>)
       captures:
         "1":
           name: entity.other.inherited-class.purescript
@@ -559,14 +559,14 @@ repository:
           name: keyword.operator.purescript
         "4":
           name: storage.type.purescript
-    - name: meta.entailment.purescript
+    - name: meta.constraint.purescript
       begin: (?=.*=>)\(
       end: \)\s*(=>)
       endCaptures:
         "1":
           name: keyword.operator.purescript
       patterns:
-      - match: \s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*
+      - match: \s*([A-Z][\w.']*)\s+([A-Za-z][\w.']*)\s*
         captures:
           "1":
             name: entity.other.inherited-class.purescript
@@ -576,7 +576,7 @@ repository:
   type-signature:
     patterns:
     - include: '#type-simple'
-    - include: '#type-entailment'
+    - include: '#type-constraint'
 
   type-simple:
     patterns:

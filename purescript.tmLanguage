@@ -1278,7 +1278,7 @@
 			<key>name</key>
 			<string>support.function.tuple.purescript</string>
 		</dict>
-		<key>type-entailment</key>
+		<key>type-constraint</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -1307,9 +1307,9 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*(=&gt;)</string>
+					<string>\s*([A-Z][\w.']*)\s+([A-Za-z][\w.']*)\s*(=&gt;)</string>
 					<key>name</key>
-					<string>meta.entailment.purescript</string>
+					<string>meta.constraint.purescript</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -1325,7 +1325,7 @@
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>meta.entailment.purescript</string>
+					<string>meta.constraint.purescript</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1343,7 +1343,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>\s*([A-Z][\w.']*)\s+([a-z][\w.']*)\s*</string>
+							<string>\s*([A-Z][\w.']*)\s+([A-Za-z][\w.']*)\s*</string>
 						</dict>
 					</array>
 				</dict>
@@ -1359,7 +1359,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#type-entailment</string>
+					<string>#type-constraint</string>
 				</dict>
 			</array>
 		</dict>
