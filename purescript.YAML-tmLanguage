@@ -518,7 +518,7 @@ repository:
         "4":
           name: punctuation.definition.string.begin.purescript
     - name: string.quoted.double.purescript
-      match: (\").*(\")
+      match: (\").*?(\")
       captures:
         "1":
           name: punctuation.definition.string.begin.purescript
