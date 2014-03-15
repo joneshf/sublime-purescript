@@ -2,7 +2,7 @@
 ---
 name: PureScript
 scopeName: source.purescript
-fileTypes: [purs]
+fileTypes: [purs, purs.hs]
 uuid: a2569d0d-e592-4873-9488-e0b8d894ac3e
 
 patterns:

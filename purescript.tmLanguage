@@ -5,6 +5,7 @@
 	<key>fileTypes</key>
 	<array>
 		<string>purs</string>
+		<string>purs.hs</string>
 	</array>
 	<key>name</key>
 	<string>PureScript</string>
