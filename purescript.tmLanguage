@@ -1108,13 +1108,13 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(case|do|else|if|in|let|of|then|until)\b</string>
+					<string>\b(case|do|else|if|in|let|of|then)\b</string>
 					<key>name</key>
 					<string>keyword.control.purescript</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(class|data|forall|foreign|import|infixl|infixr|instance|module|type|where)\b</string>
+					<string>\b(class|data|forall|foreign|import|infix|infixl|infixr|instance|module|qualified|type|where)\b</string>
 					<key>name</key>
 					<string>keyword.other.purescript</string>
 				</dict>

@@ -474,9 +474,9 @@ repository:
   reserveds:
     patterns:
     - name: keyword.control.purescript
-      match: \b(case|do|else|if|in|let|of|then|until)\b
+      match: \b(case|do|else|if|in|let|of|then)\b
     - name: keyword.other.purescript
-      match: \b(class|data|forall|foreign|import|infixl|infixr|instance|module|type|where)\b
+      match: \b(class|data|forall|foreign|import|infix|infixl|infixr|instance|module|qualified|type|where)\b
     - name: keyword.operator.purescript
       match: =>|\->|=|\.|\\
 
