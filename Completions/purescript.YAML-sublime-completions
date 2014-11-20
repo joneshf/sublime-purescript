@@ -1,0 +1,28 @@
+# [PackageDev] target_format: json, ext: sublime-completions
+---
+scope: source.purescript
+completions:
+    - as
+    - case
+    - class
+    - data
+    - do
+    - else
+    - "false"
+    - foreign
+    - if
+    - import
+    - in
+    - infix
+    - infixl
+    - infixr
+    - instance
+    - let
+    - module
+    - newtype
+    - of
+    - qualified
+    - then
+    - "true"
+    - type
+    - where
