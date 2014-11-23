@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+instance ${1/(\w)/\L\1/}${2} :: ${1:Class} ${2:Type} ${3:where}
+	$0
+]]></content>
+    <tabTrigger>instance</tabTrigger>
+    <scope>source.purescript</scope>
+</snippet>
