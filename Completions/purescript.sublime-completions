@@ -1,4 +1,5 @@
 {
+    "scope": "source.purescript", 
     "completions": [
         "as", 
         "case", 
@@ -23,7 +24,9 @@
         "then", 
         "true", 
         "type", 
-        "where"
-    ], 
-    "scope": "source.purescript"
+        "where", 
+        "Boolean", 
+        "Number", 
+        "String"
+    ]
 }

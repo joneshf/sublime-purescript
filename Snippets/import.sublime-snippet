@@ -1,7 +1,7 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 import $1
 ]]></content>
-    <tabTrigger>import</tabTrigger>
-    <scope>source.purescript</scope>
+	<tabTrigger>import</tabTrigger>
+	<scope>source.purescript</scope>
 </snippet>

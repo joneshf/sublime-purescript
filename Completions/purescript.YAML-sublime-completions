@@ -26,3 +26,6 @@ completions:
     - "true"
     - type
     - where
+    - Boolean
+    - Number
+    - String
