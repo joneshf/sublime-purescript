@@ -96,6 +96,7 @@ patterns:
 - include: '#comments'
 - include: '#reserveds'
 - include: '#constants'
+- include: '#numbers'
 - include: '#strings'
 - include: '#prelude'
 - include: '#array'
@@ -310,6 +311,10 @@ repository:
     name: storage.type.monoid.purescript
     match: \b(Monoid)\b
 
+  numbers:
+    name: constant.numeric.purescript
+    match: (?<!\w)(\b(\d+)|(\d+(\.\d+)?(e[+-]?\d+)?)\b)
+
   prelude:
     patterns:
     - include: '#prelude-data'
@@ -473,12 +478,21 @@ repository:
 
   reserveds:
     patterns:
-    - name: keyword.control.purescript
-      match: \b(case|do|else|if|in|let|of|then)\b
-    - name: keyword.other.purescript
-      match: \b(class|data|forall|foreign|import|infix|infixl|infixr|instance|module|qualified|type|where)\b
-    - name: keyword.operator.purescript
-      match: =>|\->|=|\.|\\
+    - include: '#reserveds-control'
+    - include: '#reserveds-other'
+    - include: '#reserveds-operator'
+
+  reserveds-control:
+    name: keyword.control.purescript
+    match: \b(case|do|else|if|in|let|of|then)\b
+
+  reserveds-other:
+    name: keyword.other.purescript
+    match: \b(as|class|data|forall|foreign|import|infix|infixl|infixr|instance|module|newtype|qualified|type|where)\b
+
+  reserveds-operator:
+    name: keyword.operator.purescript
+    match: =>|\->|=|\.|\\
 
   st:
     patterns:

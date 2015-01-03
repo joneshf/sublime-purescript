@@ -9,6 +9,7 @@ completions:
     - do
     - else
     - "false"
+    - forall
     - foreign
     - if
     - import
