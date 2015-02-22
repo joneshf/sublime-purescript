@@ -518,26 +518,30 @@ repository:
   strings:
     patterns:
     - name: invalid-strings
-      match: \s+((')'?('))
+      begin: (')
+      end: (')
       captures:
-        "1":
+        "0":
           name: invalid.illegal.string.purescript
-    - name: string.quoted.single.purescript
-      match: (')(.|(\\.))(')
-      captures:
-        "1":
-          name: punctuation.definition.string.begin.purescript
-        "3":
-          name: constant.character.escape.purescript
-        "4":
-          name: punctuation.definition.string.begin.purescript
+      patterns:
+      - name: invalid.illegal.string.purescript
+        match: .
     - name: string.quoted.double.purescript
-      match: (\").*?(\")
-      captures:
-        "1":
+      begin: (\")
+      end: (\")
+      beginCaptures:
+        "0":
           name: punctuation.definition.string.begin.purescript
-        "2":
-          name: punctuation.definition.string.begin.purescript
+      endCaptures:
+        "0":
+          name: punctuation.definition.string.end.purescript
+      patterns:
+      - include: '#strings-escapes'
+
+  strings-escapes:
+    patterns:
+    - name: constant.character.escape
+      match: \\('|\"|\\|/|b|f|n|r|t|v|0|u[0-9a-fA-F]{4})
 
   trace:
     patterns:

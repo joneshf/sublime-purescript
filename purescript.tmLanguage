@@ -1202,61 +1202,72 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>begin</key>
+					<string>(')</string>
 					<key>captures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>invalid.illegal.string.purescript</string>
 						</dict>
 					</dict>
-					<key>match</key>
-					<string>\s+((')'?('))</string>
+					<key>end</key>
+					<string>(')</string>
 					<key>name</key>
 					<string>invalid-strings</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>.</string>
+							<key>name</key>
+							<string>invalid.illegal.string.purescript</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
-					<key>captures</key>
+					<key>begin</key>
+					<string>(\")</string>
+					<key>beginCaptures</key>
 					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.string.begin.purescript</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>constant.character.escape.purescript</string>
-						</dict>
-						<key>4</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.string.begin.purescript</string>
 						</dict>
 					</dict>
-					<key>match</key>
-					<string>(')(.|(\\.))(')</string>
-					<key>name</key>
-					<string>string.quoted.single.purescript</string>
-				</dict>
-				<dict>
-					<key>captures</key>
+					<key>end</key>
+					<string>(\")</string>
+					<key>endCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.string.begin.purescript</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.string.begin.purescript</string>
+							<string>punctuation.definition.string.end.purescript</string>
 						</dict>
 					</dict>
-					<key>match</key>
-					<string>(\").*?(\")</string>
 					<key>name</key>
 					<string>string.quoted.double.purescript</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#strings-escapes</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>strings-escapes</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\('|\"|\\|/|b|f|n|r|t|v|0|u[0-9a-fA-F]{4})</string>
+					<key>name</key>
+					<string>constant.character.escape</string>
 				</dict>
 			</array>
 		</dict>
