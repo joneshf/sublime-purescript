@@ -518,10 +518,10 @@ repository:
   strings:
     patterns:
     - name: invalid-strings
-      begin: (')
+      begin: \s+(')
       end: (')
       captures:
-        "0":
+        "1":
           name: invalid.illegal.string.purescript
       patterns:
       - name: invalid.illegal.string.purescript

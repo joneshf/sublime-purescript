@@ -1203,10 +1203,10 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(')</string>
+					<string>\s+(')</string>
 					<key>captures</key>
 					<dict>
-						<key>0</key>
+						<key>1</key>
 						<dict>
 							<key>name</key>
 							<string>invalid.illegal.string.purescript</string>
