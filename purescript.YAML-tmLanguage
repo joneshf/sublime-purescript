@@ -55,7 +55,7 @@ patterns:
   - include: '#type-signature'
 
 - name: meta.declaration.function.purescript
-  begin: "^\\s*(\\w+|\\(.+\\))\\s*(::)"
+  begin: "^\\s*([a-z_][\\w\\d\\']*|\\(.+\\))\\s*(::)"
   end: $
   beginCaptures:
     "1":
@@ -89,7 +89,7 @@ patterns:
       name: entity.name.function.ffi.purescript
   endCaptures:
     "1":
-      name: substringkeyword.operator.purescript
+      name: keyword.operator.has-type.purescript
   patterns:
     - include: '#ffi'
 
