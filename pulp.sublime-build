@@ -1,0 +1,11 @@
+{
+    "selector": "source.purescript",
+    "cmd": ["pulp", "test"],
+    "file_regex": "^\"(.*\\.purs)\" \\(line ([0-9]*), column ([0-9]*)\\):",
+    "working_dir": "${project_path}",
+    "variants": [
+        { "name": "Run",
+          "cmd": ["pulp", "run"]
+        }
+    ]
+}
