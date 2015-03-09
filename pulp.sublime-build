@@ -1,0 +1,10 @@
+{
+    "selector": "source.purescript",
+    "cmd": ["pulp", "test"],
+    "working_dir": "${file_path}",
+    "variants": [
+        { "name": "Run",
+          "cmd": ["pulp", "run"]
+        }
+    ]
+}
